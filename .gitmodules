@@ -7,12 +7,3 @@
 [submodule "repos/solarized"]
 	path = repos/solarized
 	url = https://github.com/altercation/solarized.git
-[submodule "ssh_helper"]
-	path = ssh_helper
-	url = https://bitbucket.org/codisms/ssh_helper.git
-[submodule "db"]
-	path = db
-	url = https://bitbucket.org/codisms/db.git
-[submodule "vim-javascript"]
-	path = vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
