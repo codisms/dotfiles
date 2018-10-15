@@ -1,0 +1,13 @@
+-- \x auto
+\pset null ' «null» '
+-- \pset null '¤'
+-- \pset null 'Ø'
+-- \pset null 'ø'
+\set COMP_KEYWORD_CASE upper
+\timing
+\set HISTSIZE 2000
+\set HISTCONTROL ignoredups
+\set HISTFILE ~/.psql_history- :DBNAME
+\set VERBOSITY verbose
+\set footer on
+

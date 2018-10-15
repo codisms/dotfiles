@@ -1,0 +1,25 @@
+# pre-commit
+
+if [ ! -f ?ulpfile.js ] && [ ! -f ?ulpfile.babel.js ]; then
+	echo -e '\e[30;43m ** No gulpfile found; skipping tests and allowing commit. ** \e[0m'
+	exit 0
+fi
+
+PATH=$PATH:/usr/local/bin:/usr/local/sbin
+
+# Ensure that code that isn't part of the prospective commit isn't tested within your pre-commit script
+git stash -q --keep-index
+
+# Test prospective commit
+gulp test
+RESULT=$?
+
+git stash pop -q
+
+if [ $RESULT -ne 0 ]; then
+	echo
+	echo -e '\e[31;5mCommit blocked due to test failure(s)!\e[0m'
+	exit 1
+fi
+
+exit 0

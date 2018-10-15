@@ -1,0 +1,44 @@
+CMD_ARGS=()
+declare -A CMD_OPTIONS
+for arg in "$@"; do
+#echo -- arg = ${arg} ------------------------------
+	if [ "${arg:0:2}" == "--" ]; then
+		arg="${arg:2}"
+		if [[ "${arg}" =~ .*=.* ]]; then
+			IFS='=' read -r -a array <<< "${arg}"
+			CMD_OPTIONS[${array[0]}]="${array[1]}"
+		else
+			CMD_OPTIONS[$arg]=1
+		fi
+	else
+		CMD_ARGS+=("${arg}")
+	fi
+done
+
+function option_set() {
+	if [ "${CMD_OPTIONS[$1]}" != "" ] && [ ${CMD_OPTIONS[$1]} -eq 1 ]; then
+		export $2=1
+	else
+		export $2=0
+	fi
+}
+
+option_set debug DEBUG
+#echo DEBUG = $DEBUG
+
+function debug() {
+	if [ $DEBUG -eq 1 ]; then
+		echo -e "\033[3;90m$@\033[0m"
+	fi
+}
+
+debug \$0 = $0
+debug pwd = $(pwd)
+debug ROOTFOLDER = ${ROOTFOLDER}
+debug SCRIPTPATH = ${SCRIPTPATH}
+
+debug CMD_ARGS = ${CMD_ARGS[*]}
+for key in "${!CMD_OPTIONS[@]}"; do
+	debug CMD_OPTIONS[$key] = ${CMD_OPTIONS[$key]}
+done
+

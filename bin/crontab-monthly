@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd $(dirname $0)
+source ./crontab-env
+
+echo ""
+echo "--[ Updating tmux ]----------------------------------------------------------"
+~/.tmux/build-tmux.sh
+
+echo ""
+echo "--[ Updating vim ]----------------------------------------------------------"
+~/.tmux/build-vim.sh

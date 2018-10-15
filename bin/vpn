@@ -1,0 +1,54 @@
+#!/bin/bash
+
+show_status() {
+	while read conn; do
+		IFS=' ' read -r -a array <<< "$conn"
+		local CONNECTION_NAME="${array[0]}"
+		local CONNECTION_UUID="${array[1]}"
+		local CONNECTION_STATE=down
+		if [[ $(nmcli con status id ${CONNECTION_NAME} | grep 'VPN.VPN-STATE') =~ .*VPN\ connected$ ]]; then
+			CONNECTION_STATE=up
+		fi
+		echo "Connection '$CONNECTION_NAME' (uuid: ${CONNECTION_UUID}) is $CONNECTION_STATE"
+	done <<< $(nmcli con list | grep " vpn ")
+}
+
+show_status_line() {
+	#for conn in $(nmcli con list | grep " vpn "); do
+	local CONNECTIONS=
+	while read conn; do
+		IFS=' ' read -r -a array <<< "$conn"
+		local CONNECTION_NAME="${array[0]}"
+		local CONNECTION_UUID="${array[1]}"
+		local CONNECTION_STATE="⬇ "
+		if [[ $(nmcli con status id ${CONNECTION_NAME} | grep 'VPN.VPN-STATE') =~ .*VPN\ connected$ ]]; then
+			CONNECTION_STATE="⬆ "
+		fi
+		#echo $CONNECTION_NAME = $CONNECTION_UUID = $CONNECTION_STATE
+
+		if [ "$CONNECTIONS" != "" ]; then
+			CONNECTIONS+=":"
+		fi
+		CONNECTIONS+="${CONNECTION_STATE}${CONNECTION_NAME}"
+	done <<< $(nmcli con list | grep " vpn ")
+	echo $CONNECTIONS
+}
+
+case $1 in
+up|down)
+	sudo nmcli con $1 id $2
+	;;
+status)
+	show_status
+	;;
+status-line)
+	show_status_line
+	;;
+""|--help)
+	echo "vpn up|down|status"
+	;;
+*)
+	echo Unhandle command: $1
+	;;
+esac
+

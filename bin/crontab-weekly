@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cd $(dirname $0)
+source ./crontab-env
+
+whoami
+
+echo "PATH = ${PATH}"
+
+echo ""
+echo "--[ Updating tmux settings and plugins ]----------------------------------------------------------"
+~/.tmux/config-tmux.sh
+
+echo ""
+echo "--[ Updating vim settings and plugins ]-----------------------------------------------------------"
+~/.vim/config-vim.sh
+
+echo ""
+echo "--[ Certbot renewals ]----------------------------------------------------------------------------"
+sudo certbot -q renew --post-hook "service apache2 renew"
+
