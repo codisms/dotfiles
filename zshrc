@@ -8,8 +8,8 @@ antigen bundle gitfast
 antigen bundle akoenig/gulp.plugin.zsh
 #antigen bundle vi-mode
 #antigen theme minimal
-source ~/.dotfiles/codisms.zsh-theme
 antigen apply
+source ~/.dotfiles/codisms.zsh-theme
 
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 #alias ls='ls --color -AFh'
