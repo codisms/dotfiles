@@ -4,7 +4,7 @@ SUDO=$(which sudo 2> /dev/null)
 
 cd ${HOME}
 
-echo -e "\e[35mDownloading vim configuration to $(pwd)...\e[0m"
+echo -e "\e[35mDownloading environment configuration to $(pwd)...\e[0m"
 
 if [ -d .dotfiles ]; then
 	cd .dotfiles
