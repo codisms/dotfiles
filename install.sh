@@ -57,6 +57,8 @@ if [ -f .psqlrc ]; then
 fi
 ln -s ./.dotfiles/psqlrc .psqlrc
 
+echo "export PATH=\${PATH}:~/.dotfiles/bin" >> ~/.profile
+
 echo -e "\e[35mSetting zsh as default shell...\e[0m"
 [ -f /etc/ptmp ] && $SUDO rm -f /etc/ptmp
 $SUDO chsh -s `which zsh` ${USER}
