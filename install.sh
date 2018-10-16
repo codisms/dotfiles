@@ -20,15 +20,42 @@ git submodule update --init --recursive
 cd ..
 
 echo -e "\e[35mCreating symlinks...\e[0m"
-[ ! -f .dircolors ] && ln -s ./.dotfiles/repos/dircolors-solarized/dircolors.256dark .dircolors
-[ ! -f .zshrc ] && ln -s ./.dotfiles/zshrc .zshrc
-[ ! -f .gitconfig ] && ln -s ./.dotfiles/gitconfig .gitconfig
-[ ! -f .elinks ] && ln -s ./.dotfiles/elinks .elinks
-[ ! -f .muttrc ] && ln -s ./.dotfiles/muttrc .muttrc
-[ ! -f .ctags ] && ln -s ./.dotfiles/ctags .ctags
-[ ! -f .eslintrc ] && ln -s ./.dotfiles/eslintrc .eslintrc
-[ ! -f .editorconfig ] && ln -s ./.dotfiles/editorconfig .editorconfig
-[ ! -f .psqlrc ] && ln -s ./.dotfiles/psqlrc .psqlrc
+if [ -f .dircolors ]; then
+	mv .dircolors .dircolors.disabled
+fi
+ln -s ./.dotfiles/repos/dircolors-solarized/dircolors.256dark .dircolors
+if [ -f .zshrc ]; then
+	mv .zshrc .zshrc.disabled
+fi
+ln -s ./.dotfiles/zshrc .zshrc
+if [ -f .gitconfig ]; then
+	mv .gitconfig .gitconfig.disabled
+fi
+ln -s ./.dotfiles/gitconfig .gitconfig
+if [ -f .elinks ]; then
+	mv .elinks .elinks.disabled
+fi
+ln -s ./.dotfiles/elinks .elinks
+if [ -f .muttrc ]; then
+	mv .muttrc .muttrc.disabled
+fi
+ln -s ./.dotfiles/muttrc .muttrc
+if [ -f .ctags ]; then
+	mv .ctags .ctags.disabled
+fi
+ln -s ./.dotfiles/ctags .ctags
+if [ -f .eslintrc ]; then
+	mv .eslintrc .eslintrc.disabled
+fi
+ln -s ./.dotfiles/eslintrc .eslintrc
+if [ -f .editorconfig ]; then
+	mv .editorconfig .editorconfig.disabled
+fi
+ln -s ./.dotfiles/editorconfig .editorconfig
+if [ -f .psqlrc ]; then
+	mv .psqlrc .psqlrc.disabled
+fi
+ln -s ./.dotfiles/psqlrc .psqlrc
 
 echo -e "\e[35mSetting zsh as default shell...\e[0m"
 [ -f /etc/ptmp ] && $SUDO rm -f /etc/ptmp
