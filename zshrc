@@ -26,7 +26,7 @@ export EDITOR=vim
 export DISABLE_AUTO_TITLE=true
 export NODE_ENV=dev
 export RACK_ENV=development
-export PATH=$PATH:~/.dotfiles/bin:~/.codisms/bin:~/go/bin:node_modules/.bin
+export PATH=$PATH:node_modules/.bin
 
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
