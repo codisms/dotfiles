@@ -60,3 +60,7 @@ ln -s ./.dotfiles/psqlrc .psqlrc
 echo -e "\e[35mSetting zsh as default shell...\e[0m"
 [ -f /etc/ptmp ] && $SUDO rm -f /etc/ptmp
 $SUDO chsh -s `which zsh` ${USER}
+
+echo -e "\e[35mDownloading antigen modules...\e[0m"
+zsh -c "source ~/.zshrc"
+
