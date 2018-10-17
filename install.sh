@@ -19,43 +19,29 @@ git submodule update --init --recursive
 
 cd ..
 
+function createSymlink() {
+	local TARGET=$1
+	local NAME=$2
+
+	if [ -L ${NAME} ]; then
+		rm ${NAME}
+	fi
+	if [ -f ${NAME} ]; then
+		mv ${NAME} ${NAME}.disabled
+	fi
+	ln -s ${TARGET} ${NAME}
+}
+
 echo -e "\e[35mCreating symlinks...\e[0m"
-if [ -f .dircolors ]; then
-	mv .dircolors .dircolors.disabled
-fi
-ln -s ./.dotfiles/repos/dircolors-solarized/dircolors.256dark .dircolors
-if [ -f .zshrc ]; then
-	mv .zshrc .zshrc.disabled
-fi
-ln -s ./.dotfiles/zshrc .zshrc
-if [ -f .gitconfig ]; then
-	mv .gitconfig .gitconfig.disabled
-fi
-ln -s ./.dotfiles/gitconfig .gitconfig
-if [ -f .elinks ]; then
-	mv .elinks .elinks.disabled
-fi
-ln -s ./.dotfiles/elinks .elinks
-if [ -f .muttrc ]; then
-	mv .muttrc .muttrc.disabled
-fi
-ln -s ./.dotfiles/muttrc .muttrc
-if [ -f .ctags ]; then
-	mv .ctags .ctags.disabled
-fi
-ln -s ./.dotfiles/ctags .ctags
-if [ -f .eslintrc ]; then
-	mv .eslintrc .eslintrc.disabled
-fi
-ln -s ./.dotfiles/eslintrc .eslintrc
-if [ -f .editorconfig ]; then
-	mv .editorconfig .editorconfig.disabled
-fi
-ln -s ./.dotfiles/editorconfig .editorconfig
-if [ -f .psqlrc ]; then
-	mv .psqlrc .psqlrc.disabled
-fi
-ln -s ./.dotfiles/psqlrc .psqlrc
+createSymlink ./.dotfiles/repos/dircolors-solarized/dircolors.256dark .dircolors
+createSymlink ./.dotfiles/zshrc .zshrc
+createSymlink ./.dotfiles/gitconfig .gitconfig
+createSymlink ./.dotfiles/elinks .elinks
+createSymlink ./.dotfiles/muttrc .muttrc
+createSymlink ./.dotfiles/ctags .ctags
+createSymlink ./.dotfiles/eslintrc .eslintrc
+createSymlink ./.dotfiles/editorconfig .editorconfig
+createSymlink ./.dotfiles/psqlrc .psqlrc
 
 echo "export PATH=\${PATH}:~/.dotfiles/bin" >> ~/.profile
 
