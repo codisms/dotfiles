@@ -17,5 +17,5 @@ echo "--[ Updating vim settings and plugins ]-----------------------------------
 
 echo ""
 echo "--[ Certbot renewals ]----------------------------------------------------------------------------"
-sudo certbot -q renew --post-hook "service apache2 renew"
+sudo certbot -q renew --post-hook "service apache2 restart"
 
