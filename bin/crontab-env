@@ -1,11 +1,11 @@
 
-echo "HOME = ${HOME}"
-echo "PATH = ${PATH}"
+#echo "HOME = ${HOME}"
+#echo "PATH = ${PATH}"
 
 source /etc/environment
 source ${HOME}/.profile
 
-echo "PATH = ${PATH}"
+#echo "PATH = ${PATH}"
 
 #set
 #env
