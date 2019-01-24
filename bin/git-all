@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for folder in $(find . -maxdepth 2 -name .git -type d | sort); do
+	if ! [[ $folder =~ ^\./\..+$ ]]; then
+		folder=$(dirname ${folder})
+		cd ${folder}
+		printf "\e[35m%.100s\e[0m\n" "$(printf '== %s %s x' $(pwd) $(printf "%.1s" ={1..300}))"
+		git $@
+		cd ..
+	fi
+done
+
