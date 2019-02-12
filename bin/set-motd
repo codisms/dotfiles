@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ "$1" == "" ]; then
+	echo "Missing motd message"
+	exit 1
+fi
+
+SUDO=$(which sudo 2> /dev/null)
+
+echo -e "\e[35mSetting up motd...\e[0m"
+[ -f /etc/motd ] && $SUDO mv /etc/motd /etc/motd.bak
+echo "$1" | figlet -d ${HOME}/.dotfiles/ -f "ANSI Shadow" > /tmp/motd
+$SUDO mv /tmp/motd /etc/motd
