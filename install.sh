@@ -66,7 +66,7 @@ if [ -n "$BASH_VERSION" ]; then
 		. "$HOME/.bashrc"
 	fi
 fi
-' >> ${HOME}/.profile
+' >> ${HOME}/.bash_profile
 else
 	echo -e "\e[35mSetting zsh as default shell...\e[0m"
 	[ -f /etc/ptmp ] && $SUDO rm -f /etc/ptmp
