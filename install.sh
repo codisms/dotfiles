@@ -35,6 +35,7 @@ function createSymlink() {
 echo -e "\e[35mCreating symlinks...\e[0m"
 createSymlink ./.dotfiles/repos/dircolors-solarized/dircolors.256dark .dircolors
 createSymlink ./.dotfiles/zshrc .zshrc
+createSymlink ./.dotfiles/bashrc .bashrc
 createSymlink ./.dotfiles/gitconfig .gitconfig
 createSymlink ./.dotfiles/elinks .elinks
 createSymlink ./.dotfiles/muttrc .muttrc
