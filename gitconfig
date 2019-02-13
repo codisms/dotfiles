@@ -1,6 +1,3 @@
-[user]
-  name = James Bailey
-  email = jbailey@codisms.com
 [alias]
   my-diff = diff --color-words --ignore-all-space
   wdiff = diff --color-words --ignore-all-space
