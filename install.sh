@@ -48,7 +48,6 @@ echo "export PATH=\${PATH}:~/.dotfiles/bin" >> ~/.profile
 
 USE_BASH=0
 for var in "$@"; do
-	echo "var = $var"
 	if [ "$var" == "--bash" ]; then
 		USE_BASH=1
 	fi
