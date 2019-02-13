@@ -46,9 +46,22 @@ createSymlink ./.dotfiles/psqlrc .psqlrc
 
 echo "export PATH=\${PATH}:~/.dotfiles/bin" >> ~/.profile
 
-echo -e "\e[35mSetting zsh as default shell...\e[0m"
-[ -f /etc/ptmp ] && $SUDO rm -f /etc/ptmp
-$SUDO chsh -s `which zsh` ${USER}
+USE_BASH=0
+for var in "$@"; do
+	if [ "$var" == "--bash" ]; then
+		USE_BASH=1
+	fi
+done
+
+if [ $USE_BASH -eq 1 ]; then
+	echo -e "\e[35mSetting bash as default shell...\e[0m"
+	[ -f /etc/ptmp ] && $SUDO rm -f /etc/ptmp
+	$SUDO chsh -s `which bash` ${USER}
+else
+	echo -e "\e[35mSetting zsh as default shell...\e[0m"
+	[ -f /etc/ptmp ] && $SUDO rm -f /etc/ptmp
+	$SUDO chsh -s `which zsh` ${USER}
+fi
 
 echo -e "\e[35mDownloading antigen modules...\e[0m"
 zsh -c "source ~/.zshrc"
