@@ -57,6 +57,16 @@ if [ $USE_BASH -eq 1 ]; then
 	echo -e "\e[35mSetting bash as default shell...\e[0m"
 	[ -f /etc/ptmp ] && $SUDO rm -f /etc/ptmp
 	$SUDO chsh -s `which bash` ${USER}
+
+	echo '
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+	# include .bashrc if it exists
+	if [ -f "$HOME/.bashrc" ]; then
+		. "$HOME/.bashrc"
+	fi
+fi
+' >> ${HOME}/.profile
 else
 	echo -e "\e[35mSetting zsh as default shell...\e[0m"
 	[ -f /etc/ptmp ] && $SUDO rm -f /etc/ptmp
