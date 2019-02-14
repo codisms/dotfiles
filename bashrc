@@ -29,22 +29,22 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 [ -f ~/.profile ] && source ~/.profile
 
-if [ -f ~/.onstart ]; then
-	echo
-	echo
-	echo -e "\e[36m--[ .onstart ]-----------------------------------------------------------------------------------------------------------------------------\e[0m"
-	if [[ -x ~/.onstart ]]; then
-		~/.onstart
-	else
-		CMD=`cat ~/.onstart`
-		echo "Executing command: $CMD"
-		$CMD
-		CMD=
-	fi
-	rm ~/.onstart
-	echo -e "\e[36m-------------------------------------------------------------------------------------------------------------------------------------------\e[0m"
-	echo
-fi
+#if [ -f ~/.onstart ]; then
+#	echo
+#	echo
+#	echo -e "\e[36m--[ .onstart ]-----------------------------------------------------------------------------------------------------------------------------\e[0m"
+#	if [[ -x ~/.onstart ]]; then
+#		~/.onstart
+#	else
+#		CMD=`cat ~/.onstart`
+#		echo "Executing command: $CMD"
+#		$CMD
+#		CMD=
+#	fi
+#	rm ~/.onstart
+#	echo -e "\e[36m-------------------------------------------------------------------------------------------------------------------------------------------\e[0m"
+#	echo
+#fi
 
 #force_color_prompt=yes
 #color_support=true

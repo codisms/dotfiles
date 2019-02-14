@@ -33,3 +33,5 @@
 	required = true
 [fetch]
 	prune = true
+[include]
+	path = ~/.dotfiles.private/gitconfig
