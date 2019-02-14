@@ -38,18 +38,6 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 setopt nosharehistory
 
-#[ -f ~/.profile ] && source ~/.profile
-
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
-
-setopt nosharehistory
-
 [ -f ~/.profile ] && source ~/.profile
 
 bindkey -v
@@ -91,22 +79,22 @@ function lazygit() {
 ##echo $original_git
 #alias git='override_git'
 
-if [ -f ~/.onstart ]; then
-	echo
-	echo
-	echo -e "\e[36m--[ .onstart ]-----------------------------------------------------------------------------------------------------------------------------\e[0m"
-	if [[ -x ~/.onstart ]]; then
-		~/.onstart
-	else
-		CMD=`cat ~/.onstart`
-		echo "Executing command: $CMD"
-		$CMD
-		CMD=
-	fi
-	rm ~/.onstart
-	echo -e "\e[36m-------------------------------------------------------------------------------------------------------------------------------------------\e[0m"
-	echo
-fi
+#if [ -f ~/.onstart ]; then
+#	echo
+#	echo
+#	echo -e "\e[36m--[ .onstart ]-----------------------------------------------------------------------------------------------------------------------------\e[0m"
+#	if [[ -x ~/.onstart ]]; then
+#		~/.onstart
+#	else
+#		CMD=`cat ~/.onstart`
+#		echo "Executing command: $CMD"
+#		$CMD
+#		CMD=
+#	fi
+#	rm ~/.onstart
+#	echo -e "\e[36m-------------------------------------------------------------------------------------------------------------------------------------------\e[0m"
+#	echo
+#fi
 
 #export PATH="$PATH:$HOME/.rvm/bin"
 
