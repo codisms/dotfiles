@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [ -d ~/.dotfiles ]; then
+	cd ~/.dotfiles
+	if [ -d .git ]; then
+		git pull
+	fi
+fi
+
+if [ -d ~/.dotfiles.private ]; then
+	cd ~/.dotfiles.private
+	if [ -d .git ]; then
+		git pull
+	fi
+fi
+
+if [ -d ~/.setup ]; then
+	cd ~/.setup
+	if [ -d .git ]; then
+		git pull
+	fi
+fi
+
