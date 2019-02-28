@@ -96,6 +96,9 @@ function lazygit() {
 #	echo
 #fi
 
+# set iTerm2 title
+echo -ne "\033]0;${HOST}\007"
+
 #export PATH="$PATH:$HOME/.rvm/bin"
 
 # The next line updates PATH for the Google Cloud SDK.

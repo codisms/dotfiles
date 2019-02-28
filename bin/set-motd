@@ -9,5 +9,5 @@ SUDO=$(which sudo 2> /dev/null)
 
 echo -e "\e[35mSetting up motd...\e[0m"
 [ -f /etc/motd ] && $SUDO mv /etc/motd /etc/motd.bak
-echo "$1" | figlet -d ${HOME}/.dotfiles/ -f "ANSI Shadow" > /tmp/motd
+figlet -d ${HOME}/.dotfiles/ -f "ANSI Shadow" -w 150 "$1" > /tmp/motd
 $SUDO mv /tmp/motd /etc/motd
