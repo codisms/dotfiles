@@ -110,6 +110,9 @@ function get_short_pwd() {
 	pwd | awk -F\/ '{ print $(NF-1), $(NF) }' | sed 's| |/|'
 }
 
+# set iTerm2 title
+echo -ne "\033]0;${HOST}\007"
+
 #set editing-mode vi
 set -o vi
 export PS1="\h [\033[32m\`get_short_pwd\`\033[0m]\`parse_git_branch\` » "
