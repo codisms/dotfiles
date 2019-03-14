@@ -24,7 +24,11 @@ _host_name() {
 	fi
 }
 
-PROMPT='$(_host_name) [%{$fg[green]%}%2~%{$reset_color%}]$(vcs_status) $(vi_mode_prompt_info)»%b '
+if [ "$(id -u)" = "0" ]; then
+	PROMPT='%{$fg[red]%}$(_host_name)%{$reset_color%} [%{$fg[green]%}%2~%{$reset_color%}]$(vcs_status) $(vi_mode_prompt_info)»%b '
+else
+	PROMPT='$(_host_name) [%{$fg[green]%}%2~%{$reset_color%}]$(vcs_status) $(vi_mode_prompt_info)»%b '
+fi
 MODE_INDICATOR=" %{$fg[magenta]%}»%{$reset_color%}%{$fg_bold[magenta]%}»%{$reset_color%}"
 RPS1=""
 #RPS1='$(vi_mode_prompt_info) ${return_code}'
