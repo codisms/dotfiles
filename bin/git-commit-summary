@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ "$1" != "" ]; then
+	cd "$1"
+	if [ $? -ne 0 ]; then
+		exit 1
+	fi
+fi
+
+git log --date=short --pretty=format:'%ad,"%an",%ae' --shortstat | awk '
+BEGIN {
+	printf("Date,Name,Email,Action,Files Changed,Insertions,Deletions\n");
+}
+match($0, /^ ([0-9]+) files? changed, ([0-9]+) insertions?\(\+\), ([0-9]+) deletions?\(-\)/, a) {
+	printf("%s,%s,%d,%d,%d\n", prev, "commit", a[1], a[2], a[3]);
+	prev=""
+}
+/^20[0-9][0-9]-/ {
+	if (prev != "") {
+		printf("%s,%s,%d,%d,%d\n", prev, "merge", 0, 0, 0);
+	}
+	prev = $0;
+}
+'
