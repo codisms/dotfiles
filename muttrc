@@ -26,3 +26,5 @@ bind generic             zb        current-bottom
 
 
 set editor="vim -c 'set spell'"
+
+#source ~/.dotfiles/repos/solarized/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc
