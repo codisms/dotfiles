@@ -17,7 +17,7 @@ alias ls='ls -Fhs --color'
 #alias jump='~/ssh_helper/jump.sh'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,node_modules} --line-number'
 alias psql='sudo -u postgres psql'
-alias tmux0='tmux a -t 0'
+#alias tmux0='tmux a -t 0'
 if [ -f ~/.dircolors ]; then
 	eval `dircolors ~/.dircolors`
 fi
