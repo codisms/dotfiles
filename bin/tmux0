@@ -1,0 +1,11 @@
+#!/bin/bash
+
+TMUX_START=$(tmux ls 2>&1 | head -n 1 | cut -f1 -d' ')
+if [[ $TMUX_START =~ ^[0-9]+:$ ]]; then
+	TMUX_START="${TMUX_START%?}"
+	echo Attaching to tmux session ${TMUX_START}
+	tmux a -t ${TMUX_START}
+else
+	echo Starting new tmux session
+	tmux
+fi
