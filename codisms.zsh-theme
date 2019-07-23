@@ -6,13 +6,22 @@ ZSH_THEME_SVN_PROMPT_PREFIX=$ZSH_THEME_GIT_PROMPT_PREFIX
 ZSH_THEME_SVN_PROMPT_SUFFIX=$ZSH_THEME_GIT_PROMPT_SUFFIX
 ZSH_THEME_SVN_PROMPT_DIRTY=$ZSH_THEME_GIT_PROMPT_DIRTY
 ZSH_THEME_SVN_PROMPT_CLEAN=$ZSH_THEME_GIT_PROMPT_CLEAN
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg_bold[magenta]%}⇡%{$reset_color%}"
+#ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg_bold[magenta]%}⁞⇡✚✤%{$reset_color%}"
 
 vcs_status() {
-    if [[ ( $(whence in_svn) != "" ) && ( $(in_svn) == 1 ) ]]; then
-        svn_prompt_info
-    else
-        git_prompt_info
-    fi
+	if [[ ( $(whence in_svn) != "" ) && ( $(in_svn) == 1 ) ]]; then
+		svn_prompt_info
+	else
+		#git_prompt_info
+		# Copied from ~/.antigen/bundles/robbyrussell/oh-my-zsh/lib/git.zsh
+		local ref
+		if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" != "1" ]]; then
+			ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+			ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
+			echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$(git_remote_status)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+		fi
+	fi
 }
 
 _host_name() {
