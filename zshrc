@@ -100,3 +100,13 @@ function lazygit() {
 echo -ne "\033]0;${HOST}\007"
 
 #export PATH="$PATH:$HOME/.rvm/bin"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/jbailey/google-cloud-sdk/path.zsh.inc' ]; then source '/home/jbailey/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/jbailey/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/jbailey/google-cloud-sdk/completion.zsh.inc'; fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+stty -ixon
