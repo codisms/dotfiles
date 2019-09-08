@@ -109,4 +109,4 @@ if [ -f '/home/jbailey/google-cloud-sdk/completion.zsh.inc' ]; then source '/hom
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-[[ $- == *i* ]] && stty -ixon
+#[[ $- == *i* ]] && stty -ixon
