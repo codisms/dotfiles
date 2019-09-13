@@ -109,5 +109,6 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-echo $-
-[[ $- == *i* ]] && stty -ixon
+if [[ $- == *i* ]]; then
+	stty -ixon
+fi
