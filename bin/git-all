@@ -1,6 +1,7 @@
 #!/bin/bash
 
-for folder in $(find . -maxdepth 2 -name .git -type d | sort); do
+#for folder in $(find . -maxdepth 2 -name .git -type d | sort); do
+for folder in $(find . -maxdepth 2 -name .git | sort); do
 	if ! [[ $folder =~ ^\./\..+$ ]]; then
 		folder=$(dirname ${folder})
 		cd ${folder}

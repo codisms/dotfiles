@@ -7,5 +7,7 @@ if [[ $TMUX_START =~ ^[0-9]+:$ ]]; then
 	tmux a -t ${TMUX_START}
 else
 	echo Starting new tmux session
-	tmux
+	#tmux
+	#tmux send-keys -t 0 'tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh' Enter
+	tmux -d '~/.tmux/plugins/tmux-resurrect/scripts/restore.sh'
 fi
