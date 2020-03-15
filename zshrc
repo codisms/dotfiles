@@ -14,6 +14,7 @@ source ~/.dotfiles/codisms.zsh-theme
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 #alias ls='ls --color -AFh'
 alias ls='ls -Fhs --color'
+alias :q="cowsay -d 'You'\"'\"'re not running vim!'"
 #alias jump='~/ssh_helper/jump.sh'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,node_modules} --line-number'
 alias psql='sudo -u postgres psql'
