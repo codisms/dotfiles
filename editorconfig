@@ -25,3 +25,11 @@ indent_size = 2
 [*.js]
 indent_style = space
 indent_size = 2
+
+[*.c]
+indent_style = space
+indent_size = 2
+
+[*.cpp]
+indent_style = space
+indent_size = 2
