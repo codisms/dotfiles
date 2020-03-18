@@ -1,23 +1,38 @@
 #!/bin/bash
 
-if [ -d ~/.dotfiles ]; then
-	cd ~/.dotfiles
-	if [ -d .git ]; then
-		git pull
-	fi
-fi
+update_git_folder() {
+	FOLDER_NAME="$1"
+	CLEAR_FOLDER_NAME="$2"
 
-if [ -d ~/.dotfiles.private ]; then
-	cd ~/.dotfiles.private
-	if [ -d .git ]; then
-		git pull
-	fi
-fi
+	if [ -d "${FOLDER_NAME}" ]; then
+		cd "${FOLDER_NAME}"
 
-if [ -d ~/.setup ]; then
-	cd ~/.setup
-	if [ -d .git ]; then
-		git pull
-	fi
-fi
+		if [ -d .git ]; then
+			echo "Updating folder ${FOLDER_NAME}..."
 
+			git pull
+			if [ $? -ne 0 ]; then
+				exit 1
+			fi
+
+			if [ "${CLEAR_FOLDER_NAME}" != "" ]; then
+				rm -rf "${CLEAR_FOLDER_NAME}"
+			fi
+
+			git submodule update --init --recursive
+			if [ $? -ne 0 ]; then
+				exit 1
+			fi
+		else
+			echo "Folder ${FOLDER_NAME} is not a git folder!"
+		fi
+	else
+		echo "Folder ${FOLDER_NAME} does not exist."
+	fi
+}
+
+update_git_folder ~/.dotfiles
+update_git_folder ~/.dotfiles.private
+update_git_folder ~/.vim pack
+update_git_folder ~/.tmux plugins
+update_git_folder ~/.setup
