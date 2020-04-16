@@ -8,12 +8,16 @@ fi
 MODULE=$1
 echo MODULE = ${MODULE}
 
-git config -f .git/config --remove-section submodule.${MODULE}
-git config -f .gitmodules --remove-section submodule.${MODULE}
-git add .gitmodules
-git rm --cached ${MODULE}
-rm -rf ${MODULE}
-rm -rf .git/modules/${MODULE}
+git submodule deinit -f -- ${MODULE}
+rm -rf .git/modules/${SUBMODULE}
+git rm -f ${SUBMODULE}
+
+#git config -f .git/config --remove-section submodule.${MODULE}
+#git config -f .gitmodules --remove-section submodule.${MODULE}
+#git add .gitmodules
+#git rm --cached ${MODULE}
+#rm -rf ${MODULE}
+#rm -rf .git/modules/${MODULE}
 
 if [ "$2" == "--commit" ]; then
 	git commit -m "Remove submodule ${MODULE}"
