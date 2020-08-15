@@ -113,3 +113,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 if [[ $- == *i* ]]; then
 	stty -ixon
 fi
+
+autoload -U +X bashcompinit && bashcompinit
+source <(kubectl completion zsh)
+complete -o nospace -C /usr/bin/terraform terraform
