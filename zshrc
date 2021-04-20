@@ -4,8 +4,7 @@ source ~/.dotfiles/repos/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle gitfast
-#antigen bundle gitfast
-antigen bundle akoenig/gulp.plugin.zsh
+#antigen bundle akoenig/gulp.plugin.zsh
 #antigen bundle vi-mode
 #antigen theme minimal
 antigen apply
@@ -96,6 +95,54 @@ function lazygit() {
 #	echo -e "\e[36m-------------------------------------------------------------------------------------------------------------------------------------------\e[0m"
 #	echo
 #fi
+
+autoload -U add-zsh-hook
+function find_parent() {
+    local CURR_PWD=""
+    local CURR_FILE=""
+
+    if [ "$1" = "" ]; then
+        return
+    fi
+
+    CURR_PWD=$(pwd)
+    while [ "${CURR_PWD}" != "" ]; do
+        #echo "CURR_PWD = ${CURR_PWD}"
+
+        CURR_FILE="${CURR_PWD}/$1"
+        if [ -e "${CURR_FILE}" ]; then
+            echo "${CURR_FILE}"
+            return;
+        fi
+
+        if [ "${CURR_PWD}" = "/" ]; then
+            return
+        fi
+
+        CURR_PWD=$(dirname "${CURR_PWD}")
+    done
+    echo "${CURR_PWD}"
+}
+
+LAST_NVMRC=""
+function load_nvmrc {
+    local NVMRC_FILE=$(find_parent .nvmrc)
+    #echo "NVMRC_FILE = ${NVMRC_FILE}"
+    if [ "${NVMRC_FILE}" != "${LAST_NVMRC}" ]; then
+        if [ -f "${NVMRC_FILE}" ]; then
+            LAST_NVMRC="${NVMRC_FILE}"
+            #echo "Updating LAST_NVMRC = ${LAST_NVMRC}"
+            nvm use
+        else
+            #echo "Resetting LAST_NVMRC"
+            LAST_NVMRC=
+            nvm use default
+        fi
+    fi
+}
+add-zsh-hook chpwd load_nvmrc
+load_nvmrc
+
 
 # set iTerm2 title
 echo -ne "\033]0;${HOST}\007"
