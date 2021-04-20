@@ -118,3 +118,6 @@ echo -ne "\033]0;${HOST}\007"
 set -o vi
 export PS1="`[ $(id -u) == "0" ] && echo -e '\033[31m'`\h\033[0m [\033[32m\`get_short_pwd\`\033[0m]\`parse_git_branch\` » "
 
+
+source <(kubectl completion bash)
+complete -C /usr/bin/terraform terraform

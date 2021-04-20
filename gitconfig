@@ -35,3 +35,5 @@
 	prune = true
 [include]
 	path = ~/.dotfiles.private/gitconfig
+[pull]
+	rebase = false
