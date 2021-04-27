@@ -7,6 +7,7 @@ antigen bundle gitfast
 #antigen bundle akoenig/gulp.plugin.zsh
 #antigen bundle vi-mode
 #antigen theme minimal
+antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
 source ~/.dotfiles/codisms.zsh-theme
 
@@ -162,5 +163,9 @@ if [[ $- == *i* ]]; then
 fi
 
 autoload -U +X bashcompinit && bashcompinit
-source <(kubectl completion zsh)
-complete -o nospace -C /usr/bin/terraform terraform
+if type kubectl>/dev/null; then
+    source <(kubectl completion zsh)
+fi
+if [ -f /usr/bin/terraform ]; then
+    complete -o nospace -C /usr/bin/terraform terraform
+fi
