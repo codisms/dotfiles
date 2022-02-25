@@ -1,10 +1,11 @@
 #!/bin/bash
 
+
 cd $(dirname $0)
 source ./crontab-env
 
-#echo ""
-#echo "--[ Cleaning tmux resurrect ]----------------------------------------------------------"
+echo ""
+echo "--[ Cleaning tmux resurrect ]----------------------------------------------------------"
 cd ~/.tmux/resurrect
 if [ "$(uname)" == "Darwin" ]; then
 	RESURRECT_LAST=$(readlink last)
@@ -23,10 +24,14 @@ for file in $(find . -name tmux_resurrect_\* | sort -r); do
 		#echo "Skipping ${file}; leaving file #${counter}"
 		:
 	else
-		rm ${file}
+		echo "Removing resurrection file ${file}"
+		rm "${file}"
 	fi
 
 	counter=$((counter+1))
 done
 #/usr/bin/find ~/.tmux/resurrect \( -name 'tmux_resurrect_*' ! -wholename $(readlink -f last) \) -exec rm {} \;
+
+echo ""
+echo "Done"
 
