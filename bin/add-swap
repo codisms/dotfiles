@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ "$1" == "" ]; then
+   echo "usage: $0 <size_in_mg>"
+   exit 1
+fi
+
+DATE_STR=$(date +'%Y%m%d')
+dd if=/dev/zero of=/var/swapfile.${DATE_STR} bs=1M count=$1
+mkswap /var/swapfile.${DATE_STR}
+chmod 600 /var/swapfile.${DATE_STR}
+mkswap /var/swapfile.${DATE_STR}
+vim /etc/fstab
+swapon -a
+swapon
+
