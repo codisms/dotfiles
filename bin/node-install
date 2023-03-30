@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if ["$1" != ""]; then
+   nvm install $1
+fi
+
+npm install --quiet -g npm
+npm install --quiet -g nodemon eslint typescript tslint json http-server pm2
+npm install --quiet -g @ionic/cli
+#	grunt-cli gulp-cli webpack bower jshint \
+# Angular 8+ prompts if CI is not "true"
+CI=true npm install --quiet -g @angular/cli
+
+Node version: `node --version`
+NPM version: `npm --version`
+Eslint version: `eslint --version`
+Ionic version: `ionic version`
+Angular version: `ng version`
