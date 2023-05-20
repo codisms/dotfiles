@@ -8,14 +8,14 @@ whoami
 echo "PATH = ${PATH}"
 
 echo ""
+echo "--[ Certbot renewals ]----------------------------------------------------------------------------"
+sudo certbot renew --post-hook "service apache2 restart"
+
+echo ""
 echo "--[ Updating tmux settings and plugins ]----------------------------------------------------------"
 ~/.tmux/config-tmux.sh
 
 echo ""
 echo "--[ Updating vim settings and plugins ]-----------------------------------------------------------"
 ~/.vim/config-vim.sh
-
-echo ""
-echo "--[ Certbot renewals ]----------------------------------------------------------------------------"
-sudo certbot renew --post-hook "service apache2 restart"
 
