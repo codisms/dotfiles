@@ -43,6 +43,7 @@ createSymlink ./.dotfiles/ctags .ctags
 createSymlink ./.dotfiles/eslintrc .eslintrc
 createSymlink ./.dotfiles/editorconfig .editorconfig
 createSymlink ./.dotfiles/psqlrc .psqlrc
+createSymlink ./.dotfiles/prettierrc .prettierrc
 
 echo "export PATH=\${PATH}:~/.dotfiles/bin" >> ~/.profile
 
