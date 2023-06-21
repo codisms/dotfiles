@@ -112,7 +112,7 @@ function get_short_pwd() {
 }
 
 # set iTerm2 title
-echo -ne "\033]0;${HOST}\007"
+#echo -ne "\033]0;${HOST}\007"
 
 #set editing-mode vi
 set -o vi
