@@ -26,11 +26,11 @@ vcs_status() {
 
 _host_name() {
 	#echo $(hostname)
-	if [[ "$(hostname)" =~ '.*\.local$' ]]; then
-		echo "\e[5m%m\e[25m"
-	else
+	#if [[ "$(hostname)" =~ '.*\.local$' ]]; then
+	#	echo "\e[5m%m\e[25m"
+	#else
 		echo "%m"
-	fi
+	#fi
 }
 
 if [ "$(id -u)" = "0" ]; then

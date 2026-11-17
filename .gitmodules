@@ -1,9 +1,3 @@
 [submodule "repos/antigen"]
 	path = repos/antigen
 	url = https://github.com/zsh-users/antigen.git
-[submodule "repos/dircolors-solarized"]
-	path = repos/dircolors-solarized
-	url = https://github.com/seebi/dircolors-solarized.git
-[submodule "repos/solarized"]
-	path = repos/solarized
-	url = https://github.com/altercation/solarized.git

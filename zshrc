@@ -14,7 +14,7 @@ source ~/.dotfiles/codisms.zsh-theme
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 #alias ls='ls --color -AFh'
 alias ls='ls -Fhs --color'
-alias :q="cowsay -d 'You'\"'\"'re not running vim!'"
+# alias :q="cowsay -d 'You'\"'\"'re not running vim!'"
 #alias jump='~/ssh_helper/jump.sh'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,node_modules} --line-number'
 alias psql='sudo -u postgres psql'
@@ -37,7 +37,11 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-setopt nosharehistory
+HISTSIZE=10000       # Set the amount of lines you want saved
+SAVEHIST=10000       # This is required to actually save them, needs to match with HISTSIZE
+setopt HIST_IGNORE_DUPS          # Don\'t record an entry that was just recorded again.
+setopt SHARE_HISTORY
+# setopt nosharehistory
 
 [ -f ~/.profile ] && source ~/.profile
 
@@ -151,21 +155,16 @@ echo -ne "\033]0;${HOST}\007"
 #export PATH="$PATH:$HOME/.rvm/bin"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+[[ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]] && source "$HOME/google-cloud-sdk/path.zsh.inc"
 
 # The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+[[ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/google-cloud-sdk/completion.zsh.inc"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-if [[ $- == *i* ]]; then
-	stty -ixon
-fi
+# Disables terminal flow control (Ctrl+S and Ctrl+Q) when you are using an interactive shell
+[[ $- == *i* ]] && stty -ixon
 
 autoload -U +X bashcompinit && bashcompinit
-if type kubectl>/dev/null; then
-    source <(kubectl completion zsh)
-fi
-if [ -f /usr/bin/terraform ]; then
-    complete -o nospace -C /usr/bin/terraform terraform
-fi
+
+set RIPGREP_CONFIG_PATH="{$HOST}/.dotfiles/ripgreprc"
+
+export PATH=${PATH}:~/.dotfiles/bin

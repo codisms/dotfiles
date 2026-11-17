@@ -2,3 +2,5 @@
 *.swo
 *.swn
 
+.bash-lib
+.DS_Store

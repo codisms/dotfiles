@@ -1,0 +1,36 @@
+# Sample Config file, works with toml and yaml
+# Place in either:
+#   ~/.config/dust/config.toml
+#   ~/.dust.toml
+
+# Display & Layout: Boolean flags control options like reverse (-r), display-full-paths (-p),
+# display-apparent-size (-s), no-colors (-c), force-colors (-C), no-bars (-b), bars-on-right (-B),
+# dim (--dim), skip-total (--skip-total), only-dir (-D), only-file (-F), file-count (-f),
+# file-types (-t), screen-reader (-R), and no-progress (-P).
+
+# Filtering & Boundaries: Boolean and string keys handle exclusions such as ignore-hidden (-i),
+# limit-filesystem (-x), dereference-links (-L), min-size (-z), filter (-e), invert-filter (-v),
+# ignore-directory (-X), and collapse (--collapse).
+
+# Limits & Performance: Integer and string values configure number-of-lines (-n), depth (-d),
+# threads (-T), and output-format (-o).
+
+# ref: https://github.com/bootandy/dust/blob/master/src/config.rs#L18-L46
+
+# Print tree upside down (biggest highest)
+reverse = true
+
+# Use file length instead of blocks
+apparent-size = true
+
+# Only directories will be displayed
+only-dir = true
+
+# No percent bars or percentages will be displayed
+no-bars = true
+
+# Minimum size file to include in output
+min-size = "1"
+
+# To keep the .git and node-modules directories collapsed
+collapse=[".git", "node-modules"]
